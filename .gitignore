@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# Gmail OAuth secrets
+gmail/credentials.json
+gmail/token.json
+
+# Streamlit
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db
