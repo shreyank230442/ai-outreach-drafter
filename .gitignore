@@ -1,22 +1,73 @@
+########################
 # Python
+########################
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Virtual environment
+########################
+# Virtual Environment
+########################
 venv/
 
-# Environment variables
+########################
+# Environment & Secrets
+########################
 .env
+*.env
+client_secret.json
+credentials.json
+token.json
+token.txt
+*.pem
+*.key
 
-# Gmail OAuth secrets
-gmail/credentials.json
-gmail/token.json
-
+########################
 # Streamlit
-.streamlit/
+########################
+.streamlit/secrets.toml
 
-# OS files
+########################
+# Databases & Local Data
+########################
+*.db
+*.sqlite
+*.sqlite3
+data/vectors/
+
+########################
+# HuggingFace / AI Models
+########################
+.cache/
+huggingface/
+local_models/
+models/
+
+########################
+# Firebase (Secrets only)
+########################
+firebase_service_account.json
+
+########################
+# Node / JS
+########################
+node_modules/
+
+########################
+# Logs
+########################
+*.log
+
+########################
+# Tests (local / experimental)
+########################
+test_*.py
+
+########################
+# OS / Editor
+########################
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/

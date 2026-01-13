@@ -1,14 +1,12 @@
 import base64
 from email.mime.text import MIMEText
 from googleapiclient.discovery import build
+
 from gmail.gmail_auth import get_gmail_service
 
+
 def create_gmail_draft(to_email, subject, body):
-    print("🔵 create_gmail_draft() called")
-
     creds = get_gmail_service()
-    print("🟢 OAuth completed, credentials obtained")
-
     service = build("gmail", "v1", credentials=creds)
 
     message = MIMEText(body)
@@ -21,8 +19,11 @@ def create_gmail_draft(to_email, subject, body):
 
     draft = service.users().drafts().create(
         userId="me",
-        body={"message": {"raw": raw_message}},
+        body={
+            "message": {
+                "raw": raw_message
+            }
+        },
     ).execute()
 
-    print("✅ Draft created:", draft["id"])
-    return draft["id"]
+    return draft["id"], draft["message"]["threadId"]

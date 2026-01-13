@@ -14,3 +14,10 @@ langchain-community
 langchain-groq
 langchain-core
 openpyxl
+werkzeug
+faiss-cpu
+sentence-transformers
+pypdf
+openai
+google-genai
+requests

@@ -5,16 +5,18 @@ from google.oauth2.credentials import Credentials
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.compose"]
 
-def get_gmail_service():
+
+def get_gmail_credentials():
+    """
+    Low-level helper that returns valid Gmail OAuth credentials
+    """
     creds = None
 
     token_path = os.path.join("gmail", "token.json")
     creds_path = os.path.join("gmail", "credentials.json")
 
     if os.path.exists(token_path):
-        creds = Credentials.from_authorized_user_file(
-            token_path, SCOPES
-        )
+        creds = Credentials.from_authorized_user_file(token_path, SCOPES)
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -29,3 +31,20 @@ def get_gmail_service():
             token.write(creds.to_json())
 
     return creds
+
+
+# ✅ REQUIRED BY gmail_draft.py
+def get_gmail_service():
+    """
+    Public API expected by gmail_draft.py.
+    Returns valid Gmail OAuth credentials.
+    """
+    return get_gmail_credentials()
+
+
+# ✅ BACKWARD COMPATIBILITY (safe to keep)
+def authorize_gmail_and_get_tokens():
+    """
+    Compatibility wrapper for older imports.
+    """
+    return get_gmail_credentials()
